@@ -81,4 +81,15 @@ router.delete('/employees', async (req, res) => {
     }
 });
 
+// search employees
+router.get('/search', async (req, res) => {
+    try {
+        const query = req.query;
+        const employees = await Employee.find(query);
+        res.status(200).json(employees);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 module.exports = router;
