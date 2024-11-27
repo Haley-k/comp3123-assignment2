@@ -8,15 +8,17 @@ const mongo_URI = process.env.MONGO_URI;
 
 const app = express();
 
+const cors = require('cors');
+
 const corsOptions = {
-  origin: 'https://101427440-comp3123-assignment2-reactjs.vercel.app', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  credentials: true,
+    origin: ['http://localhost:3000', 'https://101427440-comp3123-assignment2-reactjs.vercel.app'], 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+    credentials: true, 
 };
 
 app.use(cors(corsOptions));
-
+app.options('*', cors(corsOptions)); 
 (async () => {
   try {
       if (!mongo_URI) {
