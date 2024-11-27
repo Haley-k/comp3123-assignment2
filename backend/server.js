@@ -3,13 +3,19 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 require('dotenv').config();
 
-
 const SERVER_PORT = process.env.PORT || 8000;
 const mongo_URI = process.env.MONGO_URI;
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://101427440-comp3123-assignment2-reactjs.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 (async () => {
   try {
